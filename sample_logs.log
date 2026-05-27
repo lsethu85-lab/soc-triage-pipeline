@@ -1,0 +1,9 @@
+2026-05-27T08:10:12Z host=dc01 user=admin ip=185.220.101.50 action=login_failed source=auth
+2026-05-27T08:10:16Z host=dc01 user=admin ip=185.220.101.50 action=login_failed source=auth
+2026-05-27T08:10:19Z host=dc01 user=admin ip=185.220.101.50 action=login_failed source=auth
+2026-05-27T08:10:25Z host=dc01 user=admin ip=185.220.101.50 action=login_failed source=auth
+2026-05-27T08:10:32Z host=dc01 user=admin ip=185.220.101.50 action=login_failed source=auth
+2026-05-27T08:14:01Z host=dc01 user=admin ip=185.220.101.50 action=login_success source=auth
+2026-05-27T08:15:55Z host=dc01 user=admin ip=185.220.101.50 action=privilege_escalation_attempt source=edr
+2026-05-27T09:21:00Z host=filesrv01 user=backupsvc ip=10.1.4.20 action=file_activity_ransomware_indicator source=edr
+2026-05-27T10:10:10Z host=web01 user=svcdeploy ip=10.0.0.5 action=login_success source=auth

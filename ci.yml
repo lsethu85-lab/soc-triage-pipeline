@@ -1,0 +1,33 @@
+name: SOC Triage CI
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+jobs:
+  test-and-run:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Run tests
+        run: python -m unittest discover -s tests -v
+      - name: Execute pipeline
+        run: python -m src.main --input data/sample_logs.log --ioc data/ioc_reputation.json --rules rules/detection_rules.json --out output
+      - name: Build dashboard
+        run: python -m src.dashboard --alerts output/alerts.json --out output/dashboard.html
+      - name: Upload generated artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: soc-triage-output
+          path: |
+            output/alerts.json
+            output/report.html
+            output/dashboard.html

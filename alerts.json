@@ -1,0 +1,181 @@
+[
+  {
+    "alert_id": "SOC-0001",
+    "title": "Multiple failed logins from same IP and user",
+    "rule_name": "bruteforce_login",
+    "user": "admin",
+    "source_ip": "185.220.101.50",
+    "host": "dc01",
+    "count": 5,
+    "score": 90,
+    "severity": "Critical",
+    "mitre": [
+      "T1110"
+    ],
+    "ioc_enrichment": {
+      "reputation": "malicious",
+      "confidence": 95,
+      "source": "local_mock_feed"
+    },
+    "correlation_notes": [],
+    "recommended_actions": [
+      "Review authentication logs and account lockout status",
+      "Block or challenge the source IP if malicious",
+      "Reset or protect the affected account with MFA"
+    ]
+  },
+  {
+    "alert_id": "SOC-0002",
+    "title": "Possible privilege escalation attempt",
+    "rule_name": "privilege_escalation",
+    "user": "admin",
+    "source_ip": "185.220.101.50",
+    "host": "dc01",
+    "count": 1,
+    "score": 100,
+    "severity": "Critical",
+    "mitre": [
+      "TA0004"
+    ],
+    "ioc_enrichment": {
+      "reputation": "malicious",
+      "confidence": 95,
+      "source": "local_mock_feed"
+    },
+    "correlation_notes": [],
+    "recommended_actions": [
+      "Inspect endpoint process tree and audit logs",
+      "Validate whether the privilege change was approved",
+      "Isolate affected host if activity is unauthorized"
+    ]
+  },
+  {
+    "alert_id": "SOC-0003",
+    "title": "Administrator login success from non-trusted IP",
+    "rule_name": "suspicious_admin_success",
+    "user": "admin",
+    "source_ip": "185.220.101.50",
+    "host": "dc01",
+    "count": 1,
+    "score": 90,
+    "severity": "Critical",
+    "mitre": [
+      "T1078"
+    ],
+    "ioc_enrichment": {
+      "reputation": "malicious",
+      "confidence": 95,
+      "source": "local_mock_feed"
+    },
+    "correlation_notes": [],
+    "recommended_actions": [
+      "Verify admin sign-in origin and business justification",
+      "Collect related authentication and endpoint logs",
+      "Reset credentials if compromise is suspected"
+    ]
+  },
+  {
+    "alert_id": "SOC-0004",
+    "title": "Ransomware keyword detected in event stream",
+    "rule_name": "ransomware_keyword",
+    "user": "backupsvc",
+    "source_ip": "10.1.4.20",
+    "host": "filesrv01",
+    "count": 1,
+    "score": 80,
+    "severity": "Critical",
+    "mitre": [
+      "T1486"
+    ],
+    "ioc_enrichment": {
+      "reputation": "internal",
+      "confidence": 100,
+      "source": "asset_inventory"
+    },
+    "correlation_notes": [],
+    "recommended_actions": [
+      "Isolate impacted endpoint or file server",
+      "Preserve forensic evidence and review file operations",
+      "Validate backup integrity and scope of encryption"
+    ]
+  },
+  {
+    "alert_id": "SOC-0005",
+    "title": "Bruteforce followed by admin login and privilege escalation",
+    "rule_name": "correlated_account_takeover_chain",
+    "user": "admin",
+    "source_ip": "185.220.101.50",
+    "host": "dc01",
+    "count": 7,
+    "score": 100,
+    "severity": "Critical",
+    "mitre": [
+      "T1110",
+      "T1078",
+      "TA0004"
+    ],
+    "ioc_enrichment": {
+      "reputation": "malicious",
+      "confidence": 95,
+      "source": "local_mock_feed"
+    },
+    "correlation_notes": [
+      "Observed failed login sequence",
+      "Observed admin login success",
+      "Observed privilege escalation attempt"
+    ],
+    "recommended_actions": [
+      "Treat as high-priority account compromise",
+      "Suspend the account and rotate credentials",
+      "Hunt across hosts for lateral movement or persistence"
+    ]
+  },
+  {
+    "alert_id": "SOC-0006",
+    "title": "GitHub security event: secret_scanning_alert",
+    "rule_name": "github_security_event",
+    "user": "ci-bot",
+    "source_ip": "n/a",
+    "host": "soc-triage-enrichment-pipeline",
+    "count": 1,
+    "score": 75,
+    "severity": "High",
+    "mitre": [],
+    "ioc_enrichment": {
+      "reputation": "n/a",
+      "confidence": 0,
+      "source": "github_events"
+    },
+    "correlation_notes": [
+      "Potential credential identified in commit history"
+    ],
+    "recommended_actions": [
+      "Review GitHub security finding details",
+      "Validate remediation status in repository"
+    ]
+  },
+  {
+    "alert_id": "SOC-0007",
+    "title": "GitHub security event: dependency_alert",
+    "rule_name": "github_security_event",
+    "user": "github",
+    "source_ip": "n/a",
+    "host": "soc-triage-enrichment-pipeline",
+    "count": 1,
+    "score": 55,
+    "severity": "Medium",
+    "mitre": [],
+    "ioc_enrichment": {
+      "reputation": "n/a",
+      "confidence": 0,
+      "source": "github_events"
+    },
+    "correlation_notes": [
+      "Dependency vulnerability detected in transitive package"
+    ],
+    "recommended_actions": [
+      "Review GitHub security finding details",
+      "Validate remediation status in repository"
+    ]
+  }
+]

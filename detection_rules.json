@@ -1,0 +1,54 @@
+{
+  "version": 1,
+  "rules": [
+    {
+      "name": "bruteforce_login",
+      "title": "Multiple failed logins from same IP and user",
+      "action_equals": "login_failed",
+      "threshold": 5,
+      "base_score": 50,
+      "mitre": [
+        "T1110"
+      ]
+    },
+    {
+      "name": "privilege_escalation",
+      "title": "Possible privilege escalation attempt",
+      "action_equals": "privilege_escalation_attempt",
+      "threshold": 1,
+      "base_score": 70,
+      "mitre": [
+        "TA0004"
+      ]
+    },
+    {
+      "name": "suspicious_admin_success",
+      "title": "Administrator login success from non-trusted IP",
+      "action_equals": "login_success",
+      "user_in": [
+        "admin",
+        "administrator",
+        "root"
+      ],
+      "exclude_ioc_reputation": [
+        "internal",
+        "trusted"
+      ],
+      "threshold": 1,
+      "base_score": 55,
+      "mitre": [
+        "T1078"
+      ]
+    },
+    {
+      "name": "ransomware_keyword",
+      "title": "Ransomware keyword detected in event stream",
+      "action_contains": "ransomware",
+      "threshold": 1,
+      "base_score": 80,
+      "mitre": [
+        "T1486"
+      ]
+    }
+  ]
+}

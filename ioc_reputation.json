@@ -1,0 +1,17 @@
+{
+  "185.220.101.50": {
+    "reputation": "malicious",
+    "confidence": 95,
+    "source": "local_mock_feed"
+  },
+  "10.1.4.20": {
+    "reputation": "internal",
+    "confidence": 100,
+    "source": "asset_inventory"
+  },
+  "10.0.0.5": {
+    "reputation": "trusted",
+    "confidence": 100,
+    "source": "asset_inventory"
+  }
+}

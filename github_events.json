@@ -1,0 +1,18 @@
+[
+  {
+    "timestamp": "2026-05-27T11:00:00Z",
+    "repo": "soc-triage-enrichment-pipeline",
+    "event_type": "secret_scanning_alert",
+    "actor": "ci-bot",
+    "severity": "high",
+    "detail": "Potential credential identified in commit history"
+  },
+  {
+    "timestamp": "2026-05-27T11:04:00Z",
+    "repo": "soc-triage-enrichment-pipeline",
+    "event_type": "dependency_alert",
+    "actor": "github",
+    "severity": "medium",
+    "detail": "Dependency vulnerability detected in transitive package"
+  }
+]
